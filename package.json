@@ -1,13 +1,27 @@
 {
-  "name": "chat-example",
+  "name": "first-nodejs-server",
   "version": "0.0.0",
-  "description": "A chat example to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
-  "main": "server.js",
-  "repository": "",
-  "author": "Mostafa Eweda <mo.eweda@gmail.com>",
+  "description": "tutorial on how to use nodejs on youtube",
+  "main": "app.js",
   "dependencies": {
-    "async": "~0.2.8",
-    "express": "~3.2.4",
-    "socket.io": "~0.9.14"
-  }
+    "async": "^0.2.10",
+    "express": "^3.2.6",
+    "gulp": "^3.9.0",
+    "socket.io": "^0.9.17"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/murat-aka/nodejs.git"
+  },
+  "author": "murat aka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/murat-aka/nodejs/issues"
+  },
+  "homepage": "https://github.com/murat-aka/nodejs#readme"
 }
