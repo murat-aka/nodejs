@@ -114,4 +114,33 @@ function filterLS(){
 }
 
 
-  filterLS();
+  //filterLS();
+  
+  
+  
+//////////////////////////////////////////////
+/*  function exercise 6  NODE MODULES       */
+//////////////////////////////////////////////
+
+function nodeModule(){
+ 
+   var mymodule = require('./findFiles.js');
+   var ex = process.argv[3]; // filename extension
+   var fPath = process.argv[2]; // read file path from args
+   
+   mymodule(fPath,ex,function (err, arrList) {  
+    
+      if (err)  
+         return console.error('There was an error:', err);  
+        
+      arrList.forEach(function (item){ // loop through filenames
+       
+        console.log(item); // Print the filename.
+        
+      });  
+      
+   });
+
+}
+
+  nodeModule();
