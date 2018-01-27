@@ -50,6 +50,8 @@ function syncIO(){
 
   //syncIO();
   
+  
+  
 ////////////////////////////////////////////////
 /*  function exercise 4  MY FIRST ASYNC I/O!  */
 ////////////////////////////////////////////////
@@ -76,4 +78,40 @@ function asyncIO(){
 
 
   //asyncIO();
+  
+  
 
+//////////////////////////////////////////////
+/*  function exercise 5  FILTERED LS        */
+//////////////////////////////////////////////
+
+function filterLS(){
+   
+   var fs = require('fs'); // load file system module
+   var pa = require('path'); // load path module
+   var ex = process.argv[3]; // filename extension
+   
+   var fPath = process.argv[2]; // read file path from args
+
+   fs.readdir(fPath, function doneReading(err, arrList) { // readFile is asycronous so a call back function is passed.
+    
+       if(!err){
+         
+          arrList.forEach(function (item){ // loop through filenames
+         
+            if (pa.extname(item) === '.' + ex) { // check if the filename extension is same as the passed in extension.
+             
+              console.log(item); // Print the filename.
+             
+            }
+          
+          });
+         
+       }
+   
+   });
+
+}
+
+
+  filterLS();
