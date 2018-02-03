@@ -200,6 +200,54 @@ function httpCollect(){
     
 }
 
-    httpCollect();
+    //httpCollect();
     
+
+//////////////////////////////////////////////
+/*  function exercise 9  JUGGLING ASYNC     */
+//////////////////////////////////////////////
+
+//npm install bl
+
+function httpAsync(){
     
+    var http = require('http'); // load http module
+    var bl = require('bl'); // load bl module
+    var urls = [];
+    urls.push(process.argv[2]); // get url 1 from args
+    urls.push(process.argv[3]); // get url 2 from args
+    urls.push(process.argv[4]); // get url 3 from args
+    
+    var res = [];   // responses recieved.  
+    var count = 0;  // count number of responses.
+    
+    urls.forEach(function(url, index){
+
+        http.get(url, function(response) {    
+            
+            response.pipe(bl(function (err, data) { 
+                
+                if(!err){
+                        
+                   var strString = data.toString(); // convert the buffer object to string 
+                   res[index] = strString;
+                   count++;
+                   
+                   if(count==3){
+                       
+                       res.forEach(function(item){
+                           
+                           console.log(item);  // Print data
+                           
+                       });
+                   }
+                    
+                }
+                
+            }));
+    
+        });        
+    });
+}
+
+    httpAsync();    
