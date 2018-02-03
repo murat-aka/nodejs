@@ -143,4 +143,33 @@ function nodeModule(){
 
 }
 
-  nodeModule();
+  //nodeModule();
+  
+//////////////////////////////////////////////
+/*  function exercise 7  HTTP CLIENT        */
+//////////////////////////////////////////////
+
+
+function httpClient(){
+    
+    var http = require('http'); // load http module
+    var url = process.argv[2]; // get url from args
+    http.get(url, function(response) {
+        
+        response.setEncoding('utf8'); // the "data" events will emit Strings rather than the standard Node Buffer objects
+
+        response.on("data", function(data) {
+            
+            console.log(data);  // Print data
+                  
+        });
+                    
+    });
+    
+}
+
+    //httpClient();
+
+
+    
+    
