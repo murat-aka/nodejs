@@ -170,6 +170,36 @@ function httpClient(){
 
     //httpClient();
 
+//////////////////////////////////////////////
+/*  function exercise 8  HTTP COLLECT       */
+//////////////////////////////////////////////
 
+//npm install bl
+
+function httpCollect(){
+    
+    var http = require('http'); // load http module
+    var bl = require('bl'); // load bl module
+    var url = process.argv[2]; // get url from args
+    
+    http.get(url, function(response) {    
+        
+        response.pipe(bl(function (err, data) { 
+            
+            if(!err){
+                    
+               var strString = data.toString(); // convert the buffer object to string      
+               console.log(data.length);  // Print length
+               console.log(strString);  // Print data
+                
+            }
+            
+        }));
+
+    });
+    
+}
+
+    httpCollect();
     
     
