@@ -292,4 +292,32 @@ function tcpTime(){
    
 }
 
-    tcpTime();     
+    //tcpTime();  
+    
+    
+    
+//////////////////////////////////////////////
+/*  function exercise 11  FILE SERVER       */
+//////////////////////////////////////////////
+
+
+function httpFile(){
+    
+    var http = require('http'); // load networking module
+    var port = process.argv[2]; // get the port number from args
+    var fPath = process.argv[3]; // read file path from args 
+    var fs = require('fs'); // load file system module
+    
+    var server = http.createServer(function (req, res) {  
+        // socket handling logic 
+        
+        var content = fs.createReadStream(fPath); // read incoming file stream
+        content.pipe(res); // write out
+
+    });  
+    
+    server.listen(port);     
+   
+}
+
+    httpFile();
