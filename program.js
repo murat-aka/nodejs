@@ -320,4 +320,32 @@ function httpFile(){
    
 }
 
-    httpFile();
+    //httpFile();
+    
+
+//////////////////////////////////////////////
+/*  function exercise 12  Uppercaserer      */
+//////////////////////////////////////////////
+
+
+function httpUPPER(){
+    
+    var http = require('http'); // load networking module
+    var port = process.argv[2]; // get the port number from args
+
+    var map = require('through2-map'); // load map module
+    
+    var server = http.createServer(function (inStream, outStream) {  
+        // socket handling logic 
+
+         inStream.pipe(map(function (chunk) {  
+           return chunk.toString().toUpperCase();  
+         })).pipe(outStream);
+
+    });  
+    
+    server.listen(port);     
+   
+}
+
+    httpUPPER();
