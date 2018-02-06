@@ -250,4 +250,46 @@ function httpAsync(){
     });
 }
 
-    httpAsync();    
+    //httpAsync();    
+    
+
+//////////////////////////////////////////////
+/*  function exercise 10  TIME SERVER       */
+//////////////////////////////////////////////
+
+
+function tcpTime(){
+    
+    var net = require('net'); // load networking module
+    var port = process.argv[2]; // get the port number from args
+    
+    var server = net.createServer(function (socket) {  
+        // socket handling logic 
+        
+        var date = new Date();
+        
+        var yy = date.getFullYear(); 
+        
+        var mm = date.getMonth();     // starts at 0  
+        if(mm<9)mm = '0'+ (mm+1);
+        
+        var dd = date.getDate();      // returns the day of month  
+        if(dd<10)dd = '0'+ dd;
+        
+        var hh = date.getHours(); 
+        if(hh<10)hh = '0'+ hh;
+        
+        var min = date.getMinutes(); 
+        if(min<10)min = '0'+ min;
+        
+        var data = yy + '-' + mm + '-' + dd + ' ' +hh+':'+min;
+        
+        socket.write(data+'\n');
+        socket.end();
+    });  
+    
+    server.listen(port);     
+   
+}
+
+    tcpTime();     
