@@ -348,4 +348,63 @@ function httpUPPER(){
    
 }
 
-    httpUPPER();
+    //httpUPPER();
+    
+
+//////////////////////////////////////////////
+/*  function exercise 13  JSON API SERVER   */
+//////////////////////////////////////////////
+
+
+function httpAPI(){
+    
+    var http = require('http'); // load networking module
+    var port = process.argv[2]; // get the port number from args
+
+    var url = require('url'); // load url module
+    var result = '';
+    
+    var server = http.createServer(function (inStream, outStream) {  
+        // socket handling logic 
+        var parsedUrl = url.parse(inStream.url, true); // divede url into parts.
+        var iso = parsedUrl.query.iso; // iso time
+        var format = parsedUrl.pathname; // convert into date format 
+        var time = new Date(iso); // time object
+        
+        console.log(parsedUrl);
+        
+        if(format=="/api/parsetime"){ // iso format to date
+            
+            result = {
+                                hour:   time.getHours(),  
+                                minute: time.getMinutes(),  
+                                second: time.getSeconds() 
+            };
+            
+        }
+        
+        if(format=="/api/unixtime"){ // iso format to unix datetime 
+                        
+            result = {
+                unixtime : time.getTime()             
+            };
+        
+        }
+        
+        if(Object.keys(result).length>0){ // count objects
+                     
+            outStream.writeHead(200, { 'Content-Type': 'application/json' });
+            outStream.end(JSON.stringify(result)); // write the json to output
+            
+        }else{
+            
+            outStream.writeHead(404);
+            outStream.end();          
+        }
+    });  
+    
+    server.listen(port);     
+   
+}
+
+    httpAPI();
